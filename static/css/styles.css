@@ -1,0 +1,15 @@
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-link {
+    color: white;
+}
+
+.cafe-details-list {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    {% from 'bootstrap5/form.html' import render_form %}
+
+    <header class="p-3 text-bg-dark">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"> <a href="/"
+                class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"> <svg class="bi me-2"
+                    width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg> </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{{ url_for('home') }}" class="nav-link px-3">Home</a></li>
+                <li><a href="{{ url_for('add_cafe') }}" class="nav-link px-3">Add Cafe</a></li>
+                <li><a href="{{ url_for('search') }}" class="nav-link px-3">Search by Location</a></li>
+            </ul>
+
+            </form>
+        </div>
+    </header>
+
+    <main class="flex-grow-1 overflow-auto">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {{ bootstrap.load_js() }}
+</body>
+
+</html>

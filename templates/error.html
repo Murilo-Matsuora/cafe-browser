@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Search Cafe
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <h1 class="row">{{ message }}</h1>
+    <a href="{{ url_for('home') }}" class="button row">Return to home</a>
+</div>
+{% endblock %}

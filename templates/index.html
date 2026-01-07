@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Explore Cafes
+{% endblock %}
+
+{% block content %}
+{% for cafe in cafes %}
+<div class="container py-5">
+    <div class="p-5 bg-body-tertiary rounded-3 border shadow-sm">
+        <div class="row g-5">
+            <div class="col-md-5">
+                <img src="{{ cafe.img_url }}" 
+                     class="img-fluid rounded-3 shadow" 
+                     alt="{{ cafe.name }}" 
+                     style="height: 300px; width: 100%; object-fit: cover;">
+            </div>
+
+            <div class="col-md-6">
+                <h2 class="text-body-emphasis fw-bold mb-1">{{ cafe.name }}</h2>
+                <p class="fs-5 text-muted mb-4"><i class="bi bi-geo-alt"></i> {{ cafe.location }}</p>
+                
+                <div class="row row-cols-1 row-cols-sm-2 g-3">
+                    <div class="col d-flex align-items-center">
+                        <span class="badge {{ 'text-bg-success' if cafe.has_wifi else 'text-bg-danger' }} me-2">
+                            {{ '✓' if cafe.has_toilet else 'X' }}
+                        </span>
+                        <span>Has toilet?</span>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <span class="badge {{ 'text-bg-success' if cafe.has_wifi else 'text-bg-danger' }} me-2">
+                            {{ '✓' if cafe.has_wifi else 'X' }}
+                        </span>
+                        <span>WiFi</span>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <span class="badge {{ 'text-bg-success' if cafe.has_sockets else 'text-bg-danger' }} me-2">
+                            {{ '✓' if cafe.has_sockets else 'X' }}
+                        </span>
+                        <span>Power Sockets</span>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <span class="badge {{ 'text-bg-success' if cafe.has_sockets else 'text-bg-danger' }} me-2">
+                            {{ '✓' if cafe.can_take_calls else 'X' }}
+                        </span>
+                        <span>Can take calls?</span>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <span class="badge text-bg-primary me-2">🪑</span>
+                        <span>{{ cafe.seats }} Seats available</span>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <span class="badge text-bg-warning me-2">💰</span>
+                        <span>{{ cafe.coffee_price }}</span>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <a href="{{ cafe.map_url }}" target="_blank" class="btn btn-outline-primary px-4 rounded-pill">
+                        View on Google Maps
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-1 justify-content-end">
+                <a href="{{ url_for('delete_cafe', id=cafe.id) }}" class="text-danger">DELETE</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}
